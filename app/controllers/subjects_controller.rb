@@ -1,6 +1,6 @@
 class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_participant!,  only:  [:new, :create, :edit, :update, :destroy]
   # GET /subjects
   # GET /subjects.json
   def index
@@ -10,6 +10,7 @@ class SubjectsController < ApplicationController
   # GET /subjects/1
   # GET /subjects/1.json
   def show
+    @interesteds = @subject.interested 
   end
 
   # GET /subjects/new
